@@ -1,4 +1,9 @@
+FROM nixos/nix as nixer
+RUN nix-channel --update
+RUN nix-build -A nixos-install-tools '<nixpkgs>'
+
 FROM alpine
+COPY --from=nixer /nix/store /nix/store
 RUN apk update
 RUN apk add git make gcc git musl-dev
 RUN apk add xorriso mtools squashfs-tools py3-yaml busybox unzip binutils wget
