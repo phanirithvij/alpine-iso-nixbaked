@@ -23,7 +23,7 @@ tools_init(){
     chmod +x /bin/apk
 }
 create_rootfs(){
-    ls ${DESTDIR}/etc/alpine-release &>/dev/null && return 0
+    ls "$rootfs"/etc/alpine-release &>/dev/null && return 0
     arch="$(uname -m)"
     apk --arch $arch -X "$(write_repo)/main/" -U --allow-untrusted --root "$rootfs" --initdb add alpine-base
     sync

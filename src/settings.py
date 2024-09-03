@@ -33,9 +33,9 @@ def show(contents, packages):
     inf("\t{}: {}".format(colorize("Build date", bold), time.time()))
     inf("\t{}: {}".format(colorize("ISO name", bold), contents["iso_name"]))
     inf("\t{}: {}".format(colorize("File permissions", bold),
-        contents["airootfs_directory"] if 'airootfs_directory' in contents else 'N/A'))
-    inf("\t{}: {}".format(colorize("Airootfs directory", bold),
         contents["file_permissions"] if 'file_permissions' in contents else 'N/A'))
+    inf("\t{}: {}".format(colorize("Airootfs directory", bold),
+        contents["airootfs_directory"] if 'airootfs_directory' in contents else 'N/A'))
     inf("\t{}: {}".format(colorize("Customize airootfs", bold),
         contents["customize_airootfs"] if 'customize_airootfs' in contents else 'N/A'))
     inf("\t{}: {}".format(
