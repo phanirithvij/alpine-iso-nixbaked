@@ -33,13 +33,15 @@ def create_iso(settings):
         os.makedirs("{}/isowork/EFI/boot".format(settings.workdir))
 
     # Copy Necessary Directories
-    for bootloader in ["i386-pc", "i386-efi", "x86_64-efi", "themes"]:
-        if os.path.isdir("{}/usr/lib/grub/i386-pc/".format(settings.rootfs)):
+    for bootloader in ["i386-pc", "i386-efi", "x86_64-efi"]:
+        if os.path.isdir("{}/usr/lib/grub/{}/".format(settings.rootfs, bootloader)):
             run("cp -r {}/usr/lib/grub/{}/ {}/isowork/boot/grub/".format(settings.rootfs,
                 bootloader, settings.workdir), vital=False)
         else:
             run("cp -r /usr/lib/grub/{}/ {}/isowork/boot/grub/".format(bootloader,
                 settings.workdir), vital=False)
+
+    # TODO copy themes directory /usr/share/grub/themes only breeze-grub available?
 
     # Generate Bootloaders
     run("grub-mkimage -d {0}/isowork/boot/grub/i386-pc/ -o {0}/isowork/boot/grub/i386-pc/core.img -O i386-pc -p /boot/grub biosdisk iso9660".format(settings.workdir), vital=False)

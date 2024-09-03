@@ -1,2 +1,5 @@
 linux-lts
 linux-firmware-none
+grub-efi
+grub-bios
+grub
